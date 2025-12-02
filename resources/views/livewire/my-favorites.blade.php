@@ -1,0 +1,177 @@
+<div class="py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-serif font-bold text-secondary dark:text-dark-secondary">
+                Favorit Saya
+            </h1>
+            <p class="mt-2 text-base-content/70 dark:text-dark-base-content/70">
+                Koleksi inspirasi desain interior yang Anda simpan sebagai favorit
+            </p>
+        </div>
+
+        <!-- Flash Message -->
+        @if (session()->has('success'))
+            <div class="alert alert-success mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ session('success') }}</span>
+            </div>
+        @endif
+
+        <!-- Stats Card -->
+        <div class="bg-base-100 dark:bg-dark-base-100 rounded-lg shadow-md p-4 border-l-4 border-primary mb-8 inline-block">
+            <div class="flex items-center gap-3">
+                <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"></path>
+                </svg>
+                <div>
+                    <div class="text-2xl font-bold text-base-content dark:text-dark-base-content">{{ $totalFavorites }}</div>
+                    <div class="text-sm text-base-content/70 dark:text-dark-base-content/70">Total Favorit</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter & Search -->
+        <div class="bg-base-100 dark:bg-dark-base-100 rounded-lg shadow-md mb-6 p-4">
+            <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                <!-- Search -->
+                <div class="relative w-full md:w-96">
+                    <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-base-content/50 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <input type="text"
+                           wire:model.live.debounce.300ms="search"
+                           placeholder="Cari inspirasi..."
+                           class="input input-bordered w-full pl-10">
+                </div>
+
+                <!-- Sort -->
+                <div class="flex items-center gap-2">
+                    <span class="text-sm text-base-content/70">Urutkan:</span>
+                    <select wire:model.live="sortBy" class="select select-bordered select-sm">
+                        <option value="latest">Terbaru Disimpan</option>
+                        <option value="oldest">Terlama Disimpan</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inspirations Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            @forelse($inspirations as $inspiration)
+                <div class="bg-base-100 dark:bg-dark-base-100 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
+                    <!-- Image -->
+                    <a href="{{ route('inspiration.show', $inspiration->id) }}" class="block relative aspect-[4/3] overflow-hidden bg-base-200 dark:bg-dark-base-200">
+                        @if($inspiration->image_url)
+                            <img src="{{ asset('storage/' . $inspiration->image_url) }}"
+                                 alt="{{ $inspiration->title }}"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        @else
+                            <div class="w-full h-full flex items-center justify-center">
+                                <svg class="w-16 h-16 text-base-content/30 dark:text-dark-base-content/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2
+                                    2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                        @endif
+
+                        <!-- Favorite Badge -->
+                        <div class="absolute top-2 right-2">
+                            <span class="px-3 py-1 bg-primary text-primary-content text-xs font-semibold rounded-full shadow-lg flex items-center gap-1">
+                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"></path>
+                                </svg>
+                                Favorit
+                            </span>
+                        </div>
+                    </a>
+
+                    <!-- Content -->
+                    <div class="p-4">
+                        <a href="{{ route('inspiration.show', $inspiration->id) }}">
+                            <h3 class="font-semibold text-base-content dark:text-dark-base-content line-clamp-2 mb-2 hover:text-primary transition-colors">
+                                {{ $inspiration->title }}
+                            </h3>
+                        </a>
+
+                        <!-- Meta Info -->
+                        <div class="flex flex-wrap items-center gap-2 mb-3">
+                            @if($inspiration->ruangan)
+                                <span class="px-2 py-1 bg-base-200 dark:bg-dark-base-200 text-xs rounded">
+                                    {{ $inspiration->ruangan->name }}
+                                </span>
+                            @endif
+                            @if($inspiration->tag)
+                                <span class="px-2 py-1 bg-base-200 dark:bg-dark-base-200 text-xs rounded">
+                                    {{ $inspiration->tag->name }}
+                                </span>
+                            @endif
+                        </div>
+
+                        <!-- Stats & Actions -->
+                        <div class="flex items-center justify-between pt-3 border-t border-base-300 dark:border-dark-base-300">
+                            <div class="flex items-center gap-3 text-sm text-base-content/70 dark:text-dark-base-content/70">
+                                <span class="flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4
+                                        4 0 010-5.656z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    {{ $inspiration->likedBy()->count() }}
+                                </span>
+                                @if($inspiration->user)
+                                    <span class="text-xs">
+                                        oleh {{ $inspiration->user->name }}
+                                    </span>
+                                @endif
+                            </div>
+
+                            <!-- Remove Favorite Button -->
+                            <button wire:click="removeFavorite({{ $inspiration->id }})"
+                                    wire:confirm="Yakin ingin menghapus dari favorit?"
+                                    class="p-2 hover:bg-primary/10 rounded-lg transition-colors group/btn"
+                                    title="Hapus dari favorit">
+                                <svg class="w-5 h-5 text-primary group-hover/btn:scale-110 transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <div class="col-span-full text-center py-12">
+                    <svg class="mx-auto h-16 w-16 text-base-content/40 dark:text-dark-base-content/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
+                    </svg>
+                    <h3 class="mt-4 text-lg font-medium text-base-content dark:text-dark-base-content">
+                        @if($search)
+                            Tidak ada inspirasi ditemukan
+                        @else
+                            Belum ada inspirasi yang difavoritkan
+                        @endif
+                    </h3>
+                    <p class="mt-2 text-sm text-base-content/70 dark:text-dark-base-content/70">
+                        @if($search)
+                            Coba kata kunci lain atau hapus filter pencarian.
+                        @else
+                            Jelajahi galeri inspirasi dan tekan tombol 🔖 untuk menyimpan inspirasi favorit Anda!
+                        @endif
+                    </p>
+                    <div class="mt-6">
+                        <a href="{{ route('gallery') }}" class="btn btn-primary">
+                            🔍 Jelajahi Galeri
+                        </a>
+                    </div>
+                </div>
+            @endforelse
+        </div>
+
+        <!-- Pagination -->
+        @if($inspirations->hasPages())
+            <div class="mt-8">
+                {{ $inspirations->links() }}
+            </div>
+        @endif
+    </div>
+</div>

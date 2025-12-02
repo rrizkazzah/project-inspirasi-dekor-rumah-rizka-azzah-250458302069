@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================= */
+/* LAYER: BASE - Global Styles & Typography */
+/* ========================================= */
+@layer base {
+  /* Menyembunyikan elemen dengan x-cloak saat Alpine.js sedang inisialisasi */
+  [x-cloak] {
+    display: none !important;
+  }
+
+  /* Pengaturan dasar HTML & Body */
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans bg-base-100 text-base-content antialiased;
+  }
+
+  /* Gaya heading dasar */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-medium;
+  }
+
+  /* Default border color compatibility untuk Tailwind v4 */
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: theme('colors.base-300');
+  }
+
+  html.dark *,
+  html.dark ::after,
+  html.dark ::before,
+  html.dark ::backdrop,
+  html.dark ::file-selector-button {
+    border-color: theme('colors.dark-base-300');
+  }
+}
+
+/* ========================================= */
+/* LAYER: COMPONENTS - Custom UI Components */
+/* ========================================= */
+@layer components {
+  /* Container dengan padding auto */
+  .container-auto {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* === BUTTON COMPONENTS === */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-md font-medium text-center tracking-wide transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-content hover:bg-primary/90 focus:ring-primary dark:bg-dark-primary dark:text-dark-primary-content dark:hover:bg-dark-primary/90 dark:focus:ring-dark-primary;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-content hover:bg-secondary/90 focus:ring-secondary dark:bg-dark-secondary dark:text-dark-secondary-content dark:hover:bg-dark-secondary/90 dark:focus:ring-dark-secondary;
+  }
+
+  .btn-outline {
+    @apply bg-transparent border border-primary text-primary hover:bg-primary hover:text-primary-content dark:border-dark-primary dark:text-dark-primary dark:hover:bg-dark-primary dark:hover:text-dark-primary-content;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-current hover:bg-base-content/10 dark:hover:bg-dark-base-content/10;
+  }
+
+  .btn-circle {
+    @apply rounded-full p-2;
+  }
+
+  /* === CARD COMPONENTS === */
+  .card {
+    @apply bg-base-100 dark:bg-dark-base-100 shadow-lg rounded-lg overflow-hidden transition-shadow duration-300 hover:shadow-xl;
+  }
+
+  .card-body {
+    @apply p-6;
+  }
+
+  /* === MODAL COMPONENTS === */
+  .modal-backdrop {
+    @apply fixed inset-0 z-40 bg-black/50 backdrop-blur-sm;
+  }
+
+  .modal-box {
+    @apply bg-base-100 dark:bg-dark-base-200 p-6 rounded-lg shadow-2xl max-w-md w-full;
+  }
+
+  /* === DROPDOWN COMPONENTS === */
+  .dropdown-content {
+    @apply absolute right-0 mt-2 w-56 origin-top-right bg-base-100 dark:bg-dark-base-200 divide-y divide-base-200 dark:divide-dark-base-300 rounded-md shadow-lg ring-1 ring-black/5 focus:outline-none z-50;
+  }
+
+  /* === ALERT COMPONENTS === */
+  .alert {
+    @apply p-4 rounded-lg flex items-start space-x-3;
+  }
+
+  .alert-info {
+    @apply bg-info/10 text-info-content dark:bg-info/20;
+  }
+
+  .alert-success {
+    @apply bg-success/10 text-success-content dark:bg-success/20;
+  }
+
+  .alert-warning {
+    @apply bg-warning/10 text-warning-content dark:bg-warning/20;
+  }
+
+  .alert-danger {
+    @apply bg-danger/10 text-danger-content dark:bg-danger/20;
+  }
+
+  /* === FORM COMPONENTS CUSTOMIZATION === */
+  [type='text'],
+  [type='email'],
+  [type='url'],
+  [type='password'],
+  [type='number'],
+  [type='date'],
+  [type='datetime-local'],
+  [type='month'],
+  [type='search'],
+  [type='tel'],
+  [type='time'],
+  [type='week'],
+  [multiple],
+  textarea,
+  select {
+    @apply block w-full rounded-md border-base-300 bg-base-200/50 shadow-sm
+           focus:border-primary focus:ring-2 focus:ring-primary/50
+           dark:border-dark-base-300 dark:bg-dark-base-200/50
+           dark:focus:border-dark-primary dark:focus:ring-dark-primary/50;
+  }
+
+  [type='checkbox'],
+  [type='radio'] {
+    @apply rounded-sm border-base-300 text-primary shadow-sm
+           focus:border-primary focus:ring-2 focus:ring-offset-0 focus:ring-primary/50
+           dark:border-dark-base-300 dark:text-dark-primary
+           dark:focus:border-dark-primary dark:focus:ring-dark-primary/50;
+  }
+}
+
+/* ========================================= */
+/* LAYER: UTILITIES - Custom Utility Classes */
+/* ========================================= */
+@layer utilities {
+  .backdrop-blur-xs {
+    backdrop-filter: blur(4px);
+  }
+
+  .shadow-xs {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+}

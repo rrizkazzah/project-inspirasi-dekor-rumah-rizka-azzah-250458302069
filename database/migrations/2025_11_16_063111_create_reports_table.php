@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('reason');
             $table->text('description')->nullable();
             $table->enum('status', ['pending', 'reviewed', 'resolved', 'rejected'])->default('pending');
-            $table->text('admin_notes')->nullable();
+            // $table->text('admin_notes')->nullable();
             $table->timestamps();
 
             $table->index('status');

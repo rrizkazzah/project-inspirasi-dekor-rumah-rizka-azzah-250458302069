@@ -19,7 +19,7 @@
                     <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
                         <!-- Featured Image -->
                         <!--[if BLOCK]><![endif]--><?php if($article->thumbnail_image_url): ?>
-                            <img src="<?php echo e(asset('storage/' . $article->thumbnail_image_url)); ?>" 
+                            <img src="<?php echo e(asset('storage/' . $article->thumbnail_image_url)); ?>"
                                  alt="<?php echo e($article->title); ?>"
                                  class="w-full h-48 object-cover">
                         <?php else: ?>
@@ -53,7 +53,7 @@
                             </p>
 
                             <!-- Read More -->
-                            <a href="<?php echo e(route('articles.show', $article->slug)); ?>" 
+                            <a href="<?php echo e(route('articles.show', $article->slug)); ?>"
                                wire:navigate
                                class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-semibold">
                                 Baca Selengkapnya

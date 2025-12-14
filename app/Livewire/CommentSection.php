@@ -21,7 +21,7 @@ class CommentSection extends Component
     {
         $this->comments = $this->inspiration->comments()
             ->with('user')
-            ->approved()
+            // ->approved()
             ->latest()
             ->get();
     }

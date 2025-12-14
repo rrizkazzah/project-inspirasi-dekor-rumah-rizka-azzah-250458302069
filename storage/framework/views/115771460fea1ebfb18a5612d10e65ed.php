@@ -85,26 +85,26 @@
         <div class="card-body">
             <ul class="nav nav-pills">
                 <li class="nav-item">
-                    <a class="nav-link <?php echo e($filterStatus === 'all' ? 'active' : ''); ?>" 
-                       href="#" wire:click.prevent="setFilter('all')">
+                    <a class="nav-link <?php echo e($filterStatus === 'all' ? 'active' : ''); ?>" href="#"
+                        wire:click.prevent="setFilter('all')">
                         Semua (<?php echo e($stats['all']); ?>)
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo e($filterStatus === 'pending' ? 'active' : ''); ?>" 
-                       href="#" wire:click.prevent="setFilter('pending')">
+                    <a class="nav-link <?php echo e($filterStatus === 'pending' ? 'active' : ''); ?>" href="#"
+                        wire:click.prevent="setFilter('pending')">
                         Pending (<?php echo e($stats['pending']); ?>)
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo e($filterStatus === 'approved' ? 'active' : ''); ?>" 
-                       href="#" wire:click.prevent="setFilter('approved')">
+                    <a class="nav-link <?php echo e($filterStatus === 'approved' ? 'active' : ''); ?>" href="#"
+                        wire:click.prevent="setFilter('approved')">
                         Disetujui (<?php echo e($stats['approved']); ?>)
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo e($filterStatus === 'rejected' ? 'active' : ''); ?>" 
-                       href="#" wire:click.prevent="setFilter('rejected')">
+                    <a class="nav-link <?php echo e($filterStatus === 'rejected' ? 'active' : ''); ?>" href="#"
+                        wire:click.prevent="setFilter('rejected')">
                         Ditolak (<?php echo e($stats['rejected']); ?>)
                     </a>
                 </li>
@@ -115,15 +115,31 @@
     <!-- Inspirations Grid -->
     <div class="row">
         <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $inspirations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $inspiration): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+            <?php
+                // Decode JSON menjadi array
+                $images = json_decode($inspiration->image_url, true);
+                // Ambil gambar pertama
+                $thumbnail = $images[0] ?? null;
+            ?>
+
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <img src="<?php echo e(asset('storage/' . $inspiration->image_url)); ?>" 
-                         class="card-img-top" 
-                         style="height: 200px; object-fit: cover;"
-                         alt="<?php echo e($inspiration->title); ?>">
+
+                    <!-- FIXED: tampilkan thumbnail dari JSON -->
+                    <!--[if BLOCK]><![endif]--><?php if($thumbnail): ?>
+                        <img src="<?php echo e(asset('storage/' . $thumbnail)); ?>" class="card-img-top"
+                            style="height: 200px; object-fit: cover;" alt="<?php echo e($inspiration->title); ?>">
+                    <?php else: ?>
+                        <!-- Jika tidak ada gambar -->
+                        <div class="d-flex justify-content-center align-items-center bg-light" style="height: 200px;">
+                            <i class="bi bi-image text-secondary" style="font-size: 3rem;"></i>
+                        </div>
+                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-start mb-2">
                             <h5 class="card-title mb-0"><?php echo e(Str::limit($inspiration->title, 30)); ?></h5>
+
                             <!--[if BLOCK]><![endif]--><?php if($inspiration->status === 'pending'): ?>
                                 <span class="badge bg-warning text-dark">
                                     <i class="bi bi-clock"></i> Pending
@@ -138,6 +154,7 @@
                                 </span>
                             <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                         </div>
+
                         <p class="card-text text-muted small">
                             <?php echo e(Str::limit($inspiration->description, 80)); ?>
 
@@ -146,26 +163,24 @@
                             <small class="text-muted">
                                 <i class="bi bi-person"></i> <?php echo e($inspiration->user->name); ?><br>
                                 <i class="bi bi-calendar"></i> <?php echo e($inspiration->created_at->format('d M Y H:i')); ?><br>
-                                <i class="bi bi-tag"></i> <?php echo e($inspiration->ruangan->name ?? 'N/A'); ?> - <?php echo e($inspiration->tag->name ?? 'N/A'); ?>
+                                <i class="bi bi-tag"></i> <?php echo e($inspiration->ruangan->name ?? 'N/A'); ?> -
+                                <?php echo e($inspiration->tag->name ?? 'N/A'); ?>
 
                             </small>
                         </div>
                         <div class="d-flex gap-2">
                             <!--[if BLOCK]><![endif]--><?php if($inspiration->status === 'pending'): ?>
-                                <button wire:click="approveInspiration(<?php echo e($inspiration->id); ?>)" 
-                                        class="btn btn-sm btn-success flex-fill"
-                                        wire:confirm="Setujui inspirasi ini?">
+                                <button wire:click="approveInspiration(<?php echo e($inspiration->id); ?>)"
+                                    class="btn btn-sm btn-success flex-fill" wire:confirm="Setujui inspirasi ini?">
                                     <i class="bi bi-check-lg"></i> Setuju
                                 </button>
-                                <button wire:click="rejectInspiration(<?php echo e($inspiration->id); ?>)" 
-                                        class="btn btn-sm btn-warning flex-fill"
-                                        wire:confirm="Tolak inspirasi ini?">
+                                <button wire:click="rejectInspiration(<?php echo e($inspiration->id); ?>)"
+                                    class="btn btn-sm btn-warning flex-fill" wire:confirm="Tolak inspirasi ini?">
                                     <i class="bi bi-x-lg"></i> Tolak
                                 </button>
                             <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                            <button wire:click="deleteInspiration(<?php echo e($inspiration->id); ?>)" 
-                                    class="btn btn-sm btn-danger"
-                                    wire:confirm="Hapus inspirasi ini secara permanen?">
+                            <button wire:click="deleteInspiration(<?php echo e($inspiration->id); ?>)"
+                                class="btn btn-sm btn-danger" wire:confirm="Hapus inspirasi ini secara permanen?">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </div>

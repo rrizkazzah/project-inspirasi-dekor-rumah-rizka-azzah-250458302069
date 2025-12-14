@@ -16,11 +16,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('inspiration_id')->constrained()->onDelete('cascade');
             $table->text('content');
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('approved');
             $table->timestamps();
-            
+
             $table->index('inspiration_id');
-            $table->index('status');
         });
     }
 

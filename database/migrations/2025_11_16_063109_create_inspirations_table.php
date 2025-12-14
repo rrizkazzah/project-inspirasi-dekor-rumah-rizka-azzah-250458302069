@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('ruangan_id')->nullable()->constrained('ruangan')->onDelete('set null');
+            // set null kayak data user di apus tp jejaknya ga di apus
             $table->foreignId('tags_id')->nullable()->constrained('tags')->onDelete('set null');
             $table->string('title');
             $table->text('description')->nullable();
@@ -26,10 +27,11 @@ return new class extends Migration
             $table->string('image_url');
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();
-            
+
             $table->index('user_id');
             $table->index('ruangan_id');
             $table->index('status');
+            // index buat mempercepat proses scan database 
         });
     }
 

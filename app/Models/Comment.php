@@ -10,16 +10,8 @@ class Comment extends Model
         'user_id',
         'inspiration_id',
         'content',
-        'status',
     ];
 
-    /**
-     * Scope for approved comments
-     */
-    public function scopeApproved($query)
-    {
-        return $query->where('status', 'approved');
-    }
 
     public function user()
     {

@@ -57,7 +57,7 @@
             </div>
         @endif
 
-        <!-- CTA -->
+        <!-- kirim testi -->
         <div class="mt-16 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-8 text-center">
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                 Punya Pengalaman Menarik?

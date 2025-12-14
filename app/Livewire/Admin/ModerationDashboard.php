@@ -19,7 +19,7 @@ class ModerationDashboard extends Component
     {
         $stats = [
             'pending_inspirations' => Inspiration::where('status', 'pending')->count(),
-            'pending_comments' => Comment::where('status', 'pending')->count(),
+            // 'pending_comments' => Comment::where('status', 'pending')->count(),
             'pending_reports' => Report::where('status', 'pending')->count(),
             'testimonials_count' => Testimonial::count(),
         ];
@@ -52,15 +52,9 @@ class ModerationDashboard extends Component
             ];
         });
 
-        // Data untuk chart - Status Inspirasi
-        $inspirationsByStatus = Inspiration::select('status', DB::raw('count(*) as total'))
-            ->groupBy('status')
-            ->get();
-
         return view('livewire.admin.moderation-dashboard', compact(
             'stats',
             'inspirationsPerMonth',
-            'inspirationsByStatus'
         ));
     }
 }

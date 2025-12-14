@@ -31,7 +31,6 @@ class TestimonialInsert extends Component
             'name' => $this->name,
             'content' => $this->content,
             'rating' => $this->rating,
-            'is_published' => true, // otomatis publish
         ]);
         session()->flash('message', 'Testimoni berhasil ditambahkan!');
         return redirect()->route('testimonials');

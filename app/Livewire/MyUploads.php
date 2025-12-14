@@ -6,6 +6,7 @@ use App\Models\Inspiration;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Storage;
 
 #[Layout('layouts.app')]
 class MyUploads extends Component
@@ -27,7 +28,7 @@ class MyUploads extends Component
             ->firstOrFail();
 
         // Delete image file if exists
-        if ($inspiration->image_url && \Storage::disk('public')->exists($inspiration->image_url)) {
+        if ($inspiration->image_url && Storage::disk('public')->exists($inspiration->image_url)) {
             \Storage::disk('public')->delete($inspiration->image_url);
         }
 

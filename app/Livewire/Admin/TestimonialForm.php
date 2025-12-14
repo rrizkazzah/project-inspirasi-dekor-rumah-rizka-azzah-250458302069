@@ -21,7 +21,6 @@ class TestimonialForm extends Component
             'name' => 'required|string|max:255',
             'content' => 'required|string|max:1000',
             'rating' => 'required|integer|min:1|max:5',
-            'is_published' => 'boolean',
         ];
     }
 

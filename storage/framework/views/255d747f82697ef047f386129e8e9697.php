@@ -1,25 +1,27 @@
-<div x-data="{ 
-    showToast: false, 
+<div x-data="{
+    showToast: false,
     toastMessage: '',
     toastType: 'success'
-}" 
+}"
 @notify.window="
-    showToast = true; 
+    showToast = true;
     toastMessage = $event.detail.message;
     toastType = $event.detail.type;
     setTimeout(() => showToast = false, 5000);
 ">
     
-    <button wire:click="openModal" 
-        class="flex items-center gap-2 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+    <button wire:click="openModal"
+        class="flex items-center gap-2 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700
+        dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1
+            1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path>
         </svg>
         <span class="font-medium">Laporkan</span>
     </button>
 
     
-    <div x-show="showToast" 
+    <div x-show="showToast"
          x-transition:enter="transition ease-out duration-300"
          x-transition:enter-start="opacity-0 transform translate-y-2"
          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -71,7 +73,7 @@
                                             <label for="reason" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                                 Alasan Laporan *
                                             </label>
-                                            <select wire:model="reason" 
+                                            <select wire:model="reason"
                                                 id="reason"
                                                 class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white">
                                                 <option value="">Pilih alasan...</option>
@@ -85,8 +87,8 @@
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> 
-                                                <span class="text-red-500 text-sm"><?php echo e($message); ?></span> 
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <span class="text-red-500 text-sm"><?php echo e($message); ?></span>
                                             <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -97,7 +99,7 @@ unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
                                             <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                                 Deskripsi (Opsional)
                                             </label>
-                                            <textarea 
+                                            <textarea
                                                 wire:model="description"
                                                 id="description"
                                                 rows="3"
@@ -108,8 +110,8 @@ unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> 
-                                                <span class="text-red-500 text-sm"><?php echo e($message); ?></span> 
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <span class="text-red-500 text-sm"><?php echo e($message); ?></span>
                                             <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -121,12 +123,14 @@ unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
                         </div>
                     </div>
                     <div class="bg-gray-50 dark:bg-gray-700 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                        <button wire:click="submitReport" type="button" 
-                            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        <button wire:click="submitReport" type="button"
+                            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2
+                            bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
                             Kirim Laporan
                         </button>
-                        <button wire:click="closeModal" type="button" 
-                            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm">
+                        <button wire:click="closeModal" type="button"
+                            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-base font-medium
+                            text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm">
                             Batal
                         </button>
                     </div>

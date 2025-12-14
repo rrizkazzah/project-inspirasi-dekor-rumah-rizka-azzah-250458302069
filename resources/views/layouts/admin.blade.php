@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Dashboard') - Admin Homespire</title>
-    
+
     <link rel="shortcut icon" href="{{ asset('mazer/compiled/svg/favicon.svg') }}" type="image/x-icon">
-    
+
     <link rel="stylesheet" href="{{ asset('mazer/compiled/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('mazer/compiled/css/iconly.css') }}">
-    
+
     @livewireStyles
     @stack('styles')
 </head>
@@ -34,11 +34,11 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
-                        
+
                         <li class="sidebar-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                             <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
@@ -47,28 +47,28 @@
                         </li>
 
                         <li class="sidebar-title">Moderasi</li>
-                        
+
                         <li class="sidebar-item {{ request()->routeIs('admin.inspirations') ? 'active' : '' }}">
                             <a href="{{ route('admin.inspirations') }}" class='sidebar-link'>
                                 <i class="bi bi-images"></i>
                                 <span>Inspirasi</span>
                             </a>
                         </li>
-                        
+
                         <li class="sidebar-item {{ request()->routeIs('admin.comments') ? 'active' : '' }}">
                             <a href="{{ route('admin.comments') }}" class='sidebar-link'>
                                 <i class="bi bi-chat-dots-fill"></i>
                                 <span>Komentar</span>
                             </a>
                         </li>
-                        
+
                         <li class="sidebar-item {{ request()->routeIs('admin.reports') ? 'active' : '' }}">
                             <a href="{{ route('admin.reports') }}" class='sidebar-link'>
                                 <i class="bi bi-flag-fill"></i>
                                 <span>Laporan</span>
                             </a>
                         </li>
-                        
+
                         <li class="sidebar-item {{ request()->routeIs('admin.testimonials*') ? 'active' : '' }}">
                             <a href="{{ route('admin.testimonials') }}" class='sidebar-link'>
                                 <i class="bi bi-star-fill"></i>
@@ -77,7 +77,7 @@
                         </li>
 
                         <li class="sidebar-title">Konten</li>
-                        
+
                         <li class="sidebar-item {{ request()->routeIs('admin.articles*') ? 'active' : '' }}">
                             <a href="{{ route('admin.articles') }}" class='sidebar-link'>
                                 <i class="bi bi-newspaper"></i>
@@ -86,14 +86,14 @@
                         </li>
 
                         <li class="sidebar-title">Lainnya</li>
-                        
+
                         <li class="sidebar-item">
                             <a href="{{ route('home') }}" class='sidebar-link' target="_blank">
                                 <i class="bi bi-arrow-left-circle"></i>
                                 <span>Kembali ke Website</span>
                             </a>
                         </li>
-                        
+
                         <li class="sidebar-item">
                             <form method="POST" action="{{ route('admin.logout') }}" id="logout-form">
                                 @csrf
@@ -107,14 +107,14 @@
                 </div>
             </div>
         </div>
-        
+
         <div id="main">
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
-            
+
             <div class="page-heading">
                 <div class="page-title">
                     <div class="row">
@@ -122,33 +122,33 @@
                             <h3>@yield('page-title', 'Dashboard')</h3>
                             <p class="text-subtitle text-muted">@yield('page-subtitle', '')</p>
                         </div>
-                        <div class="col-12 col-md-6 order-md-2 order-first">
+                        {{-- <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 @yield('breadcrumb')
                             </nav>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
-                
-                @if(session('success'))
+
+                {{-- @if(session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <i class="bi bi-check-circle-fill"></i> {{ session('success') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
-                
+
                 @if(session('error'))
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <i class="bi bi-x-circle-fill"></i> {{ session('error') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                @endif
-                
+                @endif --}}
+
                 <section class="section">
                     {{ $slot }}
                 </section>
             </div>
-            
+
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
@@ -161,11 +161,11 @@
             </footer>
         </div>
     </div>
-    
+
     <script src="{{ asset('mazer/static/js/components/dark.js') }}"></script>
     <script src="{{ asset('mazer/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('mazer/compiled/js/app.js') }}"></script>
-    
+
     @livewireScripts
     @stack('scripts')
 </body>

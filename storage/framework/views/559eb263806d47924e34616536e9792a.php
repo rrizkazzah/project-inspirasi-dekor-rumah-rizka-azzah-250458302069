@@ -11,7 +11,7 @@ use Livewire\Volt\Component;
     <div class="mb-8">
         <h2 class="text-3xl font-serif font-bold text-secondary dark:text-dark-secondary">Masuk ke Akun Anda</h2>
         <p class="mt-2 text-sm text-base-content/70 dark:text-dark-base-content/70">
-            Belum punya akun? 
+            Belum punya akun?
             <a href="<?php echo e(route('register')); ?>" class="font-medium text-primary dark:text-dark-primary hover:underline" wire:navigate>
                 Daftar sekarang
             </a>
@@ -44,7 +44,7 @@ use Livewire\Volt\Component;
         <!-- Email Address -->
         <div>
             <label for="email" class="block text-sm font-medium text-base-content dark:text-dark-base-content">Email</label>
-            <input wire:model="form.email" id="email" type="email" name="email" required autofocus autocomplete="username" 
+            <input wire:model="form.email" id="email" type="email" name="email" required autofocus autocomplete="username"
                    class="mt-1 block w-full rounded-md border-base-300 bg-base-200/50 shadow-xs focus:border-primary focus:ring-3 focus:ring-primary/50 dark:border-dark-base-300 dark:bg-dark-base-200/50 dark:focus:border-dark-primary dark:focus:ring-dark-primary/50"
                    placeholder="nama@email.com">
             <?php if (isset($component)) { $__componentOriginalf94ed9c5393ef72725d159fe01139746 = $component; } ?>
@@ -100,7 +100,7 @@ use Livewire\Volt\Component;
         <!-- Remember Me & Forgot Password -->
         <div class="flex items-center justify-between">
             <label for="remember" class="inline-flex items-center">
-                <input wire:model="form.remember" id="remember" type="checkbox" 
+                <input wire:model="form.remember" id="remember" type="checkbox"
                        class="rounded-sm border-base-300 text-primary shadow-xs focus:border-primary focus:ring-3 focus:ring-offset-0 focus:ring-primary/50 dark:border-dark-base-300 dark:text-dark-primary dark:focus:border-dark-primary dark:focus:ring-dark-primary/50">
                 <span class="ml-2 text-sm text-base-content dark:text-dark-base-content">Ingat saya</span>
             </label>

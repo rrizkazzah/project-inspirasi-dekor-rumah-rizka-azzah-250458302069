@@ -13,8 +13,10 @@
         <!-- Flash Message -->
         @if (session()->has('success'))
             <div class="alert alert-success mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <span>{{ session('success') }}</span>
             </div>
@@ -22,20 +24,24 @@
 
         <!-- Stats Cards -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div class="bg-base-100 dark:bg-dark-base-100 rounded-lg shadow-md p-4 border-l-4 border-primary dark:border-dark-primary">
+            <div
+                class="bg-base-100 dark:bg-dark-base-100 rounded-lg shadow-md p-4 border-l-4 border-primary dark:border-dark-primary">
                 <div class="text-2xl font-bold text-base-content dark:text-dark-base-content">{{ $stats['all'] }}</div>
                 <div class="text-sm text-base-content/70 dark:text-dark-base-content/70">Total Unggahan</div>
             </div>
             <div class="bg-base-100 dark:bg-dark-base-100 rounded-lg shadow-md p-4 border-l-4 border-warning">
-                <div class="text-2xl font-bold text-base-content dark:text-dark-base-content">{{ $stats['pending'] }}</div>
+                <div class="text-2xl font-bold text-base-content dark:text-dark-base-content">{{ $stats['pending'] }}
+                </div>
                 <div class="text-sm text-base-content/70 dark:text-dark-base-content/70">Pending</div>
             </div>
             <div class="bg-base-100 dark:bg-dark-base-100 rounded-lg shadow-md p-4 border-l-4 border-success">
-                <div class="text-2xl font-bold text-base-content dark:text-dark-base-content">{{ $stats['approved'] }}</div>
+                <div class="text-2xl font-bold text-base-content dark:text-dark-base-content">{{ $stats['approved'] }}
+                </div>
                 <div class="text-sm text-base-content/70 dark:text-dark-base-content/70">Disetujui</div>
             </div>
             <div class="bg-base-100 dark:bg-dark-base-100 rounded-lg shadow-md p-4 border-l-4 border-error">
-                <div class="text-2xl font-bold text-base-content dark:text-dark-base-content">{{ $stats['rejected'] }}</div>
+                <div class="text-2xl font-bold text-base-content dark:text-dark-base-content">{{ $stats['rejected'] }}
+                </div>
                 <div class="text-sm text-base-content/70 dark:text-dark-base-content/70">Ditolak</div>
             </div>
         </div>
@@ -45,19 +51,19 @@
             <div class="border-b border-base-300 dark:border-dark-base-300">
                 <nav class="flex -mb-px">
                     <button wire:click="setStatusFilter('all')"
-                            class="px-6 py-3 text-sm font-medium transition-colors {{ $statusFilter === 'all' ? 'border-b-2 border-primary text-primary dark:border-dark-primary dark:text-dark-primary' : 'text-base-content/70 hover:text-base-content dark:text-dark-base-content/70 dark:hover:text-dark-base-content' }}">
+                        class="px-6 py-3 text-sm font-medium transition-colors {{ $statusFilter === 'all' ? 'border-b-2 border-primary text-primary dark:border-dark-primary dark:text-dark-primary' : 'text-base-content/70 hover:text-base-content dark:text-dark-base-content/70 dark:hover:text-dark-base-content' }}">
                         Semua ({{ $stats['all'] }})
                     </button>
                     <button wire:click="setStatusFilter('pending')"
-                            class="px-6 py-3 text-sm font-medium transition-colors {{ $statusFilter === 'pending' ? 'border-b-2 border-warning text-warning' : 'text-base-content/70 hover:text-base-content dark:text-dark-base-content/70 dark:hover:text-dark-base-content' }}">
+                        class="px-6 py-3 text-sm font-medium transition-colors {{ $statusFilter === 'pending' ? 'border-b-2 border-warning text-warning' : 'text-base-content/70 hover:text-base-content dark:text-dark-base-content/70 dark:hover:text-dark-base-content' }}">
                         Pending ({{ $stats['pending'] }})
                     </button>
                     <button wire:click="setStatusFilter('approved')"
-                            class="px-6 py-3 text-sm font-medium transition-colors {{ $statusFilter === 'approved' ? 'border-b-2 border-success text-success' : 'text-base-content/70 hover:text-base-content dark:text-dark-base-content/70 dark:hover:text-dark-base-content' }}">
+                        class="px-6 py-3 text-sm font-medium transition-colors {{ $statusFilter === 'approved' ? 'border-b-2 border-success text-success' : 'text-base-content/70 hover:text-base-content dark:text-dark-base-content/70 dark:hover:text-dark-base-content' }}">
                         Disetujui ({{ $stats['approved'] }})
                     </button>
                     <button wire:click="setStatusFilter('rejected')"
-                            class="px-6 py-3 text-sm font-medium transition-colors {{ $statusFilter === 'rejected' ? 'border-b-2 border-error text-error' : 'text-base-content/70 hover:text-base-content dark:text-dark-base-content/70 dark:hover:text-dark-base-content' }}">
+                        class="px-6 py-3 text-sm font-medium transition-colors {{ $statusFilter === 'rejected' ? 'border-b-2 border-error text-error' : 'text-base-content/70 hover:text-base-content dark:text-dark-base-content/70 dark:hover:text-dark-base-content' }}">
                         Ditolak ({{ $stats['rejected'] }})
                     </button>
                 </nav>
@@ -67,33 +73,45 @@
         <!-- Inspirations Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             @forelse($inspirations as $inspiration)
-                <div class="bg-base-100 dark:bg-dark-base-100 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <div
+                    class="bg-base-100 dark:bg-dark-base-100 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
                     <!-- Image -->
-                    <div class="relative aspect-[4/3] overflow-hidden bg-base-200 dark:bg-dark-base-200">
-                        @if($inspiration->image_url)
-                            <img src="{{ asset('storage/' . $inspiration->image_url) }}" 
-                                 alt="{{ $inspiration->title }}"
-                                 class="w-full h-full object-cover">
+                    <div class=" relative aspect-[3/4] overflow-hidden bg-gray-200 dark:bg-gray-700">
+                        @php
+                            $images = json_decode($inspiration->image_url, true);
+                            $thumbnail = $images[0] ?? null;
+                        @endphp
+
+                        @if ($thumbnail)
+                            <img src="{{ asset('storage/' . $thumbnail) }}" alt="{{ $inspiration->title }}"
+                                class="w-full h-full object-cover">
                         @else
                             <div class="w-full h-full flex items-center justify-center">
-                                <svg class="w-16 h-16 text-base-content/30 dark:text-dark-base-content/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                <svg class="w-16 h-16 text-base-content/30 dark:text-dark-base-content/30"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0
+                  012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0
+                  00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                                 </svg>
                             </div>
                         @endif
-                        
+
+
                         <!-- Status Badge -->
                         <div class="absolute top-2 right-2">
-                            @if($inspiration->status === 'pending')
-                                <span class="px-3 py-1 bg-warning text-warning-content text-xs font-semibold rounded-full shadow-lg">
+                            @if ($inspiration->status === 'pending')
+                                <span
+                                    class="px-3 py-1 bg-warning text-warning-content text-xs font-semibold rounded-full shadow-lg">
                                     ⏳ Pending
                                 </span>
                             @elseif($inspiration->status === 'approved')
-                                <span class="px-3 py-1 bg-success text-success-content text-xs font-semibold rounded-full shadow-lg">
+                                <span
+                                    class="px-3 py-1 bg-success text-success-content text-xs font-semibold rounded-full shadow-lg">
                                     ✓ Disetujui
                                 </span>
                             @elseif($inspiration->status === 'rejected')
-                                <span class="px-3 py-1 bg-error text-error-content text-xs font-semibold rounded-full shadow-lg">
+                                <span
+                                    class="px-3 py-1 bg-error text-error-content text-xs font-semibold rounded-full shadow-lg">
                                     ✗ Ditolak
                                 </span>
                             @endif
@@ -108,12 +126,12 @@
 
                         <!-- Meta Info -->
                         <div class="flex flex-wrap items-center gap-2 mb-3">
-                            @if($inspiration->ruangan)
+                            @if ($inspiration->ruangan)
                                 <span class="px-2 py-1 bg-base-200 dark:bg-dark-base-200 text-xs rounded">
                                     {{ $inspiration->ruangan->name }}
                                 </span>
                             @endif
-                            @if($inspiration->tag)
+                            @if ($inspiration->tag)
                                 <span class="px-2 py-1 bg-base-200 dark:bg-dark-base-200 text-xs rounded">
                                     {{ $inspiration->tag->name }}
                                 </span>
@@ -121,11 +139,15 @@
                         </div>
 
                         <!-- Stats & Actions -->
-                        <div class="flex items-center justify-between pt-3 border-t border-base-300 dark:border-dark-base-300">
-                            <div class="flex items-center gap-3 text-sm text-base-content/70 dark:text-dark-base-content/70">
+                        <div
+                            class="flex items-center justify-between pt-3 border-t border-base-300 dark:border-dark-base-300">
+                            <div
+                                class="flex items-center gap-3 text-sm text-base-content/70 dark:text-dark-base-content/70">
                                 <span class="flex items-center gap-1">
                                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                                        <path fill-rule="evenodd"
+                                            d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                                            clip-rule="evenodd"></path>
                                     </svg>
                                     {{ $inspiration->likedBy()->count() }}
                                 </span>
@@ -137,27 +159,28 @@
                             <!-- Actions Dropdown -->
                             <div x-data="{ open: false }" class="relative">
                                 <button @click="open = !open" @click.away="open = false"
-                                        class="p-2 hover:bg-base-200 dark:hover:bg-dark-base-200 rounded-lg transition-colors">
-                                    <svg class="w-5 h-5 text-base-content/70 dark:text-dark-base-content/70" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
+                                    class="p-2 hover:bg-base-200 dark:hover:bg-dark-base-200 rounded-lg transition-colors">
+                                    <svg class="w-5 h-5 text-base-content/70 dark:text-dark-base-content/70"
+                                        fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z">
+                                        </path>
                                     </svg>
                                 </button>
 
-                                <div x-show="open"
-                                     x-transition:enter="transition ease-out duration-100"
-                                     x-transition:enter-start="opacity-0 scale-95"
-                                     x-transition:enter-end="opacity-100 scale-100"
-                                     style="display: none;"
-                                     class="absolute right-0 mt-2 w-48 bg-base-100 dark:bg-dark-base-200 rounded-lg shadow-lg border border-base-300 dark:border-dark-base-300 z-10">
-                                    @if($inspiration->status === 'approved')
-                                        <a href="{{ route('inspiration.show', $inspiration->id) }}" 
-                                           class="block px-4 py-2 text-sm hover:bg-base-200 dark:hover:bg-dark-base-300 rounded-t-lg">
+                                <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                    x-transition:enter-start="opacity-0 scale-95"
+                                    x-transition:enter-end="opacity-100 scale-100" style="display: none;"
+                                    class="absolute right-0 mt-2 w-48 bg-base-100 dark:bg-dark-base-200 rounded-lg shadow-lg border border-base-300 dark:border-dark-base-300 z-10">
+                                    @if ($inspiration->status === 'approved')
+                                        <a href="{{ route('inspiration.show', $inspiration->id) }}"
+                                            class="block px-4 py-2 text-sm hover:bg-base-200 dark:hover:bg-dark-base-300 rounded-t-lg">
                                             👁️ Lihat di Galeri
                                         </a>
                                     @endif
                                     <button wire:click="deleteInspiration({{ $inspiration->id }})"
-                                            wire:confirm="Yakin ingin menghapus inspirasi ini?"
-                                            class="block w-full text-left px-4 py-2 text-sm text-error hover:bg-error/10 rounded-b-lg">
+                                        wire:confirm="Yakin ingin menghapus inspirasi ini?"
+                                        class="block w-full text-left px-4 py-2 text-sm text-error hover:bg-error/10 rounded-b-lg">
                                         🗑️ Hapus
                                     </button>
                                 </div>
@@ -165,7 +188,7 @@
                         </div>
 
                         <!-- Status Info -->
-                        @if($inspiration->status === 'pending')
+                        @if ($inspiration->status === 'pending')
                             <div class="mt-3 p-2 bg-warning/10 rounded text-xs text-warning">
                                 💡 Sedang dalam proses review admin
                             </div>
@@ -182,11 +205,14 @@
                 </div>
             @empty
                 <div class="col-span-full text-center py-12">
-                    <svg class="mx-auto h-12 w-12 text-base-content/40 dark:text-dark-base-content/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    <svg class="mx-auto h-12 w-12 text-base-content/40 dark:text-dark-base-content/40" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                        </path>
                     </svg>
                     <h3 class="mt-2 text-sm font-medium text-base-content dark:text-dark-base-content">
-                        @if($statusFilter === 'all')
+                        @if ($statusFilter === 'all')
                             Belum ada unggahan
                         @else
                             Tidak ada inspirasi dengan status: {{ $statusFilter }}
@@ -205,7 +231,7 @@
         </div>
 
         <!-- Pagination -->
-        @if($inspirations->hasPages())
+        @if ($inspirations->hasPages())
             <div class="mt-8">
                 {{ $inspirations->links() }}
             </div>

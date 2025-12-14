@@ -2,12 +2,14 @@
 
 namespace App\Livewire;
 
-use App\Models\Inspiration;
-use App\Models\Ruangan;
 use App\Models\Tag;
+use App\Models\Ruangan;
 use Livewire\Component;
+use App\Models\Inspiration;
 use Livewire\WithPagination;
+use Livewire\Attributes\Layout;
 
+#[Layout('layouts.app')]
 class InspirationGallery extends Component
 {
     use WithPagination;
@@ -21,7 +23,7 @@ class InspirationGallery extends Component
         'search' => ['except' => ''],
         'ruanganFilter' => ['except' => ''],
         'tagFilter' => ['except' => ''],
-        'earortBy' => ['except' => 'latest'],
+        'sortBy' => ['except' => 'latest'],
     ];
 
     public function updatingarcharch()

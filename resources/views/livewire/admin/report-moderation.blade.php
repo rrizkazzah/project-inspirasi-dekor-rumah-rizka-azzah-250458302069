@@ -106,26 +106,35 @@
                                 </td>
                                 <td style="max-width: 250px;">
                                     <strong>{{ $report->reason }}</strong>
-                                    @if($report->description)
+                                    @if ($report->description)
                                         <p class="mb-0 text-muted small">{{ Str::limit($report->description, 80) }}</p>
                                     @endif
                                 </td>
                                 <td>
-                                    @if($report->inspiration)
-                                        <a href="{{ route('inspiration.show', $report->inspiration_id) }}" 
-                                           target="_blank" 
-                                           class="text-decoration-none">
-                                            <img src="{{ asset('storage/' . $report->inspiration->image_url) }}" 
-                                                 style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;"
-                                                 alt="Thumbnail">
-                                            <div class="small mt-1">{{ Str::limit($report->inspiration->title, 25) }}</div>
+                                    @if ($report->inspiration)
+                                        @php
+                                            $images = json_decode($report->inspiration->image_url ?? '[]', true);
+                                            $thumbnail = is_array($images) ? $images[0] ?? null : null;
+                                        @endphp
+
+                                        <a href="{{ route('inspiration.show', $report->inspiration_id) }}"
+                                            target="_blank" class="text-decoration-none d-inline-block text-center">
+
+                                            <img src="{{ $thumbnail ? asset('storage/' . $thumbnail) : 'https://via.placeholder.com/60?text=No+Image' }}"
+                                                style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;"
+                                                alt="Thumbnail">
+
+                                            <div class="small mt-1">
+                                                {{ Str::limit($report->inspiration->title, 25) }}
+                                            </div>
                                         </a>
                                     @else
                                         <span class="text-muted">Konten telah dihapus</span>
                                     @endif
                                 </td>
+
                                 <td>
-                                    @if($report->status === 'pending')
+                                    @if ($report->status === 'pending')
                                         <span class="badge bg-warning text-dark">
                                             <i class="bi bi-clock"></i> Pending
                                         </span>
@@ -143,16 +152,15 @@
                                     <small>{{ $report->created_at->format('d M Y') }}<br>{{ $report->created_at->format('H:i') }}</small>
                                 </td>
                                 <td>
-                                    @if($report->status === 'pending' && $report->inspiration)
+                                    @if ($report->status === 'pending' && $report->inspiration)
                                         <div class="d-flex gap-2">
-                                            <button wire:click="reviewReport({{ $report->id }}, 'remove_content')" 
-                                                    class="btn btn-sm btn-danger"
-                                                    wire:confirm="Hapus konten yang dilaporkan?">
+                                            <button wire:click="reviewReport({{ $report->id }}, 'remove_content')"
+                                                class="btn btn-sm btn-danger"
+                                                wire:confirm="Hapus konten yang dilaporkan?">
                                                 <i class="bi bi-trash"></i> Hapus
                                             </button>
-                                            <button wire:click="reviewReport({{ $report->id }}, 'reject')" 
-                                                    class="btn btn-sm btn-secondary"
-                                                    wire:confirm="Tolak laporan ini?">
+                                            <button wire:click="reviewReport({{ $report->id }}, 'reject')"
+                                                class="btn btn-sm btn-secondary" wire:confirm="Tolak laporan ini?">
                                                 <i class="bi bi-x-lg"></i> Tolak
                                             </button>
                                         </div>

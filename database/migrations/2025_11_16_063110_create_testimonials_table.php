@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name', 100);
             $table->text('content');
             $table->integer('rating')->default(5);
-            $table->boolean('is_published')->default(false);
             $table->timestamps();
         });
     }

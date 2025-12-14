@@ -42,7 +42,7 @@
                 Tim kami siap membantu Anda. Hubungi kami melalui WhatsApp.
             </p>
             <div class="flex justify-center">
-                <a href="https://wa.me/62xxxxxxxxxxx?text=Halo%20Homespire,%20saya%20ingin%20bertanya%20tentang..."
+                <a href="https://wa.me/6281213060590?text=Halo%20Homespire,%20saya%20ingin%20bertanya%20tentang..."
                    target="_blank"
                    class="inline-flex items-center justify-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold">
                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">

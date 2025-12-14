@@ -11,7 +11,7 @@ class TestimonialList extends Component
 {
     public function render()
     {
-        $testimonials = Testimonial::published()->latest()->get();
+        $testimonials = Testimonial::latest()->get();
 
         return view('livewire.testimonial-list', ['testimonials' => $testimonials]);
     }

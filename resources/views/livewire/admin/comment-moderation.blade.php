@@ -74,13 +74,6 @@
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        @if($comment->status === 'pending')
-                                            <button wire:click="approveComment({{ $comment->id }})"
-                                                    class="btn btn-sm btn-success"
-                                                    wire:confirm="Setujui komentar ini?">
-                                                <i class="bi bi-check-lg"></i>
-                                            </button>
-                                        @endif
                                         <button wire:click="deleteComment({{ $comment->id }})"
                                                 class="btn btn-sm btn-danger"
                                                 wire:confirm="Hapus komentar ini?">

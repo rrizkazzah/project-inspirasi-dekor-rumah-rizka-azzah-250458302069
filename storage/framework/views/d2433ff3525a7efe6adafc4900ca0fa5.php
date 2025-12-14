@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Tailwind CSS -->
     <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css', 'resources/js/app.js']); ?>
 
@@ -24,7 +24,7 @@
     </style>
 </head>
 <body class="bg-base-100 text-base-content font-sans antialiased transition-colors duration-300">
-    
+
     <div class="min-h-screen flex">
         <!-- Left Side - Image/Branding -->
         <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-primary to-secondary relative overflow-hidden">
@@ -58,7 +58,8 @@
                         </div>
                     </div>
                     <div class="flex items-start space-x-3">
-                        <svg class="w-6 h-6 text-white shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <svg class="w-6 h-6 text-white shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                         <div>
                             <h4 class="font-medium text-white">Bagikan Ideamu</h4>
                             <p class="text-sm text-white/80">Upload dan bagikan inspirasi desainmu sendiri</p>

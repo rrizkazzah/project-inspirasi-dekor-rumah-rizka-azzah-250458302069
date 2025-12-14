@@ -15,7 +15,9 @@ class InspirationUpload extends Component
 {
     use WithFileUploads;
 
-    public $image;
+    public $image1;
+    public $image2;
+    public $image3;
     public $title;
     public $description;
     public $ruangan_id;
@@ -29,7 +31,9 @@ class InspirationUpload extends Component
     protected function rules()
     {
         return [
-            'image' => 'required|image|max:5120', // 5MB Max
+            'image1' => 'required|image|max:5120',
+            'image2' => 'required|image|max:5120',
+            'image3' => 'required|image|max:5120',
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'ruangan_id' => 'nullable|exists:ruangan,id',
@@ -46,7 +50,12 @@ class InspirationUpload extends Component
     {
         $this->validate();
 
-        $imagePath = $this->image->store('inspirations', 'public');
+        $imagePaths = [];
+
+        $imagePaths[] = $this->image1->store('inspirations', 'public');
+        $imagePaths[] = $this->image2->store('inspirations', 'public');
+        $imagePaths[] = $this->image3->store('inspirations', 'public');
+
 
         // Cek role user: admin tidak perlu moderasi, user biasa perlu moderasi
         /** @var \App\Models\User $user */
@@ -64,7 +73,7 @@ class InspirationUpload extends Component
             'year' => $this->year,
             'country' => $this->country,
             'jenis_material' => $this->jenis_material,
-            'image_url' => $imagePath,
+            'image_url' => json_encode($imagePaths),
             'status' => $status,
         ]);
 
@@ -89,4 +98,3 @@ class InspirationUpload extends Component
         ]);
     }
 }
-

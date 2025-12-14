@@ -19,9 +19,9 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nama <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" 
+                                <input type="text" class="form-control @error('name') is-invalid @enderror"
                                        id="name" wire:model="name" placeholder="Masukkan nama">
-                                @error('name') 
+                                @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -30,10 +30,10 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label for="content" class="form-label">Testimoni <span class="text-danger">*</span></label>
-                                <textarea class="form-control @error('content') is-invalid @enderror" 
-                                          id="content" wire:model="content" rows="4" 
+                                <textarea class="form-control @error('content') is-invalid @enderror"
+                                          id="content" wire:model="content" rows="4"
                                           placeholder="Masukkan testimoni"></textarea>
-                                @error('content') 
+                                @error('content')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -42,7 +42,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="rating" class="form-label">Rating <span class="text-danger">*</span></label>
-                                <select class="form-select @error('rating') is-invalid @enderror" 
+                                <select class="form-select @error('rating') is-invalid @enderror"
                                         id="rating" wire:model="rating">
                                     <option value="1">⭐ 1 - Kurang Baik</option>
                                     <option value="2">⭐⭐ 2 - Cukup</option>
@@ -50,7 +50,7 @@
                                     <option value="4">⭐⭐⭐⭐ 4 - Sangat Baik</option>
                                     <option value="5">⭐⭐⭐⭐⭐ 5 - Luar Biasa</option>
                                 </select>
-                                @error('rating') 
+                                @error('rating')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -60,7 +60,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Status</label>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" 
+                                    <input class="form-check-input" type="checkbox"
                                            id="is_published" wire:model="is_published">
                                     <label class="form-check-label" for="is_published">
                                         Publish Testimoni
@@ -79,9 +79,9 @@
                                 <i class="bi bi-x-circle me-2"></i>Batal
                             </button>
                         </div>
-                        
+
                         @if($testimonialId)
-                            <button type="button" wire:click="delete" 
+                            <button type="button" wire:click="delete"
                                     wire:confirm="Yakin ingin menghapus testimoni ini?"
                                     class="btn btn-danger">
                                 <i class="bi bi-trash me-2"></i>Hapus

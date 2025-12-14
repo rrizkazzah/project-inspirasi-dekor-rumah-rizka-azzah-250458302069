@@ -113,18 +113,28 @@
                                 </td>
                                 <td>
                                     <!--[if BLOCK]><![endif]--><?php if($report->inspiration): ?>
-                                        <a href="<?php echo e(route('inspiration.show', $report->inspiration_id)); ?>" 
-                                           target="_blank" 
-                                           class="text-decoration-none">
-                                            <img src="<?php echo e(asset('storage/' . $report->inspiration->image_url)); ?>" 
-                                                 style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;"
-                                                 alt="Thumbnail">
-                                            <div class="small mt-1"><?php echo e(Str::limit($report->inspiration->title, 25)); ?></div>
+                                        <?php
+                                            $images = json_decode($report->inspiration->image_url ?? '[]', true);
+                                            $thumbnail = is_array($images) ? $images[0] ?? null : null;
+                                        ?>
+
+                                        <a href="<?php echo e(route('inspiration.show', $report->inspiration_id)); ?>"
+                                            target="_blank" class="text-decoration-none d-inline-block text-center">
+
+                                            <img src="<?php echo e($thumbnail ? asset('storage/' . $thumbnail) : 'https://via.placeholder.com/60?text=No+Image'); ?>"
+                                                style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;"
+                                                alt="Thumbnail">
+
+                                            <div class="small mt-1">
+                                                <?php echo e(Str::limit($report->inspiration->title, 25)); ?>
+
+                                            </div>
                                         </a>
                                     <?php else: ?>
                                         <span class="text-muted">Konten telah dihapus</span>
                                     <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                                 </td>
+
                                 <td>
                                     <!--[if BLOCK]><![endif]--><?php if($report->status === 'pending'): ?>
                                         <span class="badge bg-warning text-dark">
@@ -146,14 +156,13 @@
                                 <td>
                                     <!--[if BLOCK]><![endif]--><?php if($report->status === 'pending' && $report->inspiration): ?>
                                         <div class="d-flex gap-2">
-                                            <button wire:click="reviewReport(<?php echo e($report->id); ?>, 'remove_content')" 
-                                                    class="btn btn-sm btn-danger"
-                                                    wire:confirm="Hapus konten yang dilaporkan?">
+                                            <button wire:click="reviewReport(<?php echo e($report->id); ?>, 'remove_content')"
+                                                class="btn btn-sm btn-danger"
+                                                wire:confirm="Hapus konten yang dilaporkan?">
                                                 <i class="bi bi-trash"></i> Hapus
                                             </button>
-                                            <button wire:click="reviewReport(<?php echo e($report->id); ?>, 'reject')" 
-                                                    class="btn btn-sm btn-secondary"
-                                                    wire:confirm="Tolak laporan ini?">
+                                            <button wire:click="reviewReport(<?php echo e($report->id); ?>, 'reject')"
+                                                class="btn btn-sm btn-secondary" wire:confirm="Tolak laporan ini?">
                                                 <i class="bi bi-x-lg"></i> Tolak
                                             </button>
                                         </div>

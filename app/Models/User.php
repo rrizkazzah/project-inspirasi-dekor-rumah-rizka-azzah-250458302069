@@ -56,41 +56,26 @@ class User extends Authenticatable
         return $this->role === 'admin';
     }
 
-    /**
-     * User's inspirations
-     */
     public function inspirations()
     {
         return $this->hasMany(Inspiration::class);
     }
 
-    /**
-     * User's favorites
-     */
     public function favorites()
     {
         return $this->belongsToMany(Inspiration::class, 'user_favorites');
     }
 
-    /**
-     * User's likes
-     */
     public function likes()
     {
         return $this->belongsToMany(Inspiration::class, 'likes');
     }
 
-    /**
-     * User's comments
-     */
     public function comments()
     {
         return $this->hasMany(Comment::class);
     }
 
-    /**
-     * User's reports
-     */
     public function reports()
     {
         return $this->hasMany(Report::class);

@@ -76,13 +76,6 @@
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <!--[if BLOCK]><![endif]--><?php if($comment->status === 'pending'): ?>
-                                            <button wire:click="approveComment(<?php echo e($comment->id); ?>)"
-                                                    class="btn btn-sm btn-success"
-                                                    wire:confirm="Setujui komentar ini?">
-                                                <i class="bi bi-check-lg"></i>
-                                            </button>
-                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                                         <button wire:click="deleteComment(<?php echo e($comment->id); ?>)"
                                                 class="btn btn-sm btn-danger"
                                                 wire:confirm="Hapus komentar ini?">

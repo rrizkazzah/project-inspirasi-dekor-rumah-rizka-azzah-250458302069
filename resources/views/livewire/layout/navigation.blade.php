@@ -22,25 +22,25 @@ new class extends Component {
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" wire:navigate>
+                    <a href="{{ route('dashboard') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('gallery')" :active="request()->routeIs('gallery')" wire:navigate>
+                    <x-nav-link :href="route('gallery')" :active="request()->routeIs('gallery')">
                         {{ __('Galeri') }}
                     </x-nav-link>
                     <x-nav-link :href="route('inspiration.upload')" :active="request()->routeIs('inspiration.upload')"
-                        wire:navigate>
+                        >
                         {{ __('Upload') }}
                     </x-nav-link>
                     @if(auth()->user()->isAdmin())
-                        <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.*')" wire:navigate>
+                        <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.*')">
                             {{ __('Admin') }}
                         </x-nav-link>
                     @endif
@@ -68,15 +68,15 @@ new class extends Component {
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile')" wire:navigate>
+                        <x-dropdown-link :href="route('profile')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
-                        <x-dropdown-link :href="route('my.uploads')" wire:navigate>
+                        <x-dropdown-link :href="route('my.uploads')">
                             {{ __('Unggahan Saya') }}
                         </x-dropdown-link>
 
-                        <x-dropdown-link :href="route('my.likes')" wire:navigate>
+                        <x-dropdown-link :href="route('my.likes')">
                             <span class="flex items-center gap-2">
                                 <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
@@ -87,7 +87,7 @@ new class extends Component {
                             </span>
                         </x-dropdown-link>
 
-                        <x-dropdown-link :href="route('my.favorites')" wire:navigate>
+                        <x-dropdown-link :href="route('my.favorites')">
                             <span class="flex items-center gap-2">
                                 <svg class="w-4 h-4 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"></path>
@@ -107,7 +107,7 @@ new class extends Component {
             </div>
 
             <!-- Hamburger -->
-            <div class="-me-2 flex items-center sm:hidden">
+            <div class="-me-2 flex items-center sm:hidden" wire:ignore>
                 <button @click="open = ! open"
                     class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -123,21 +123,21 @@ new class extends Component {
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden" wire:ignore>
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('gallery')" :active="request()->routeIs('gallery')" wire:navigate>
+            <x-responsive-nav-link :href="route('gallery')" :active="request()->routeIs('gallery')">
                 {{ __('Galeri') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('inspiration.upload')"
-                :active="request()->routeIs('inspiration.upload')" wire:navigate>
+                :active="request()->routeIs('inspiration.upload')">
                 {{ __('Upload') }}
             </x-responsive-nav-link>
             @if(auth()->user()->isAdmin())
                 <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.*')"
-                    wire:navigate>
+                    >
                     {{ __('Admin') }}
                 </x-responsive-nav-link>
             @endif
@@ -153,15 +153,15 @@ new class extends Component {
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile')" wire:navigate>
+                <x-responsive-nav-link :href="route('profile')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 
-                <x-responsive-nav-link :href="route('my.uploads')" wire:navigate>
+                <x-responsive-nav-link :href="route('my.uploads')">
                     {{ __('Unggahan Saya') }}
                 </x-responsive-nav-link>
 
-                <x-responsive-nav-link :href="route('my.likes')" wire:navigate>
+                <x-responsive-nav-link :href="route('my.likes')">
                     <span class="flex items-center gap-2">
                         <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
@@ -172,7 +172,7 @@ new class extends Component {
                     </span>
                 </x-responsive-nav-link>
 
-                <x-responsive-nav-link :href="route('my.favorites')" wire:navigate>
+                <x-responsive-nav-link :href="route('my.favorites')">
                     <span class="flex items-center gap-2">
                         <svg class="w-4 h-4 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"></path>

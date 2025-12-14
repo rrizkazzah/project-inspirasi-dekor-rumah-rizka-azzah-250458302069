@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" 
-      x-data="{ 
-        isNavOpen: false 
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+      x-data="{
+        isNavOpen: false
       }">
 <head>
     <meta charset="utf-8">
@@ -9,6 +9,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Homespire') }} - {{ $title ?? 'Platform Inspirasi Desain' }}</title>
+      <link rel="stylesheet" crossorigin href="{{asset('mazer/compiled/css/app.css')}}">
+  <link rel="stylesheet" crossorigin href="{{asset('mazer/compiled/css/app-dark.css')}}">
 
     <!-- Google Fonts: Inter (sans) & Playfair Display (serif) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,7 +32,7 @@
     <!-- ===== HEADER & NAVIGATION ===== -->
     <header class="sticky top-0 z-30 w-full bg-base-100/80 backdrop-blur-sm shadow-sm transition-all">
         <div class="container-auto">
-            
+
             <!-- Top Bar -->
             <div class="flex justify-between items-center py-2 border-b border-base-200 text-sm">
                 <div class="flex items-center space-x-4">
@@ -51,7 +53,7 @@
                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                 </svg>
                             </button>
-                            <div x-show="isOpen" 
+                            <div x-show="isOpen"
                                  x-transition:enter="transition ease-out duration-100"
                                  x-transition:enter-start="opacity-0 scale-95"
                                  x-transition:enter-end="opacity-100 scale-100"
@@ -122,14 +124,14 @@
             </nav>
 
             <!-- Menu Mobile -->
-            <div x-show="isNavOpen" 
+            <div x-show="isNavOpen"
                  x-transition:enter="transition ease-out duration-200"
                  x-transition:enter-start="opacity-0 -translate-y-4"
                  x-transition:enter-end="opacity-100 translate-y-0"
                  x-transition:leave="transition ease-in duration-150"
                  x-transition:leave-start="opacity-100 translate-y-0"
                  x-transition:leave-end="opacity-0 -translate-y-4"
-                 @click.away="isNavOpen = false" 
+                 @click.away="isNavOpen = false"
                  style="display: none;"
                  class="lg:hidden pb-4 border-t border-base-300">
                 <ul class="flex flex-col space-y-2 mt-4">
@@ -139,7 +141,7 @@
                     <li><a href="{{ route('articles.index') }}" class="block px-4 py-2 rounded-md hover:bg-base-200 {{ request()->routeIs('articles.*') ? 'bg-base-200 text-primary' : '' }}">Artikel</a></li>
                     <li><a href="{{ route('testimonials') }}" class="block px-4 py-2 rounded-md hover:bg-base-200 {{ request()->routeIs('testimonials') ? 'bg-base-200 text-primary' : '' }}">Testimoni</a></li>
                     <li><a href="{{ route('faq') }}" class="block px-4 py-2 rounded-md hover:bg-base-200 {{ request()->routeIs('faq') ? 'bg-base-200 text-primary' : '' }}">FAQ</a></li>
-                    
+
                     @auth
                         <li class="pt-2 mt-2 border-t border-base-300">
                             <div class="px-4 py-2 text-sm font-medium text-base-content/60">{{ Auth::user()->name }}</div>
@@ -280,7 +282,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="mt-12 pt-8 border-t border-neutral-content/20 text-center text-neutral-content/60">
                 <p>&copy; {{ date('Y') }} Homespire. All rights reserved. Platform Inspirasi Desain Interior Indonesia.</p>
             </div>
@@ -291,7 +293,12 @@
     @livewireScripts
 
     <!-- Alpine.js v3 CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js" defer></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js" defer></script> --}}
+       <script src="{{asset('mazer/static/js/components/dark.js')}}"></script>
+    <script src="{{asset('mazer/extensions/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+
+
+    {{-- <script src="{{asset('mazer/compiled/js/app.js')}}"></script> --}}
 
     @stack('scripts')
 </body>

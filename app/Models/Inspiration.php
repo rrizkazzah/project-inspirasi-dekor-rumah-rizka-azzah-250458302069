@@ -88,6 +88,7 @@ class Inspiration extends Model
     }
 
 
+    // buat ngecek like user
     public function isLikedBy($user)
     {
         if (!$user) return false;

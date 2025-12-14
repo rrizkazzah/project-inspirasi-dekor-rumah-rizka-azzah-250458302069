@@ -298,7 +298,7 @@
                 </div>
 
                 @php
-                    $testimonials = \App\Models\Testimonial::published()->latest()->take(3)->get();
+                    $testimonials = \App\Models\Testimonial::latest()->take(3)->get();
                 @endphp
 
                 @if($testimonials->count() > 0)
@@ -445,7 +445,7 @@
                                     0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                             </svg>
                         </a>
-                        <a href="#" class="hover:text-primary dark:hover:text-dark-primary" aria-label="Instagram">
+                        <a href="https://www.instagram.com/rrizkazh/" class="hover:text-primary dark:hover:text-dark-primary" aria-label="Instagram">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919
@@ -454,7 +454,7 @@
                                      6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                             </svg>
                         </a>
-                        <a href="#" class="hover:text-primary dark:hover:text-dark-primary" aria-label="Twitter">
+                        <a href="https://x.com/myhomespire0__0" class="hover:text-primary dark:hover:text-dark-primary" aria-label="Twitter">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923
@@ -541,7 +541,7 @@
     @livewireScripts
 
     <!-- Alpine.js v3 CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js" defer></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js" defer></script> --}}
 
     <!-- Debug Alpine.js -->
     <script>

@@ -84,26 +84,26 @@
         <div class="card-body">
             <ul class="nav nav-pills">
                 <li class="nav-item">
-                    <a class="nav-link {{ $filterStatus === 'all' ? 'active' : '' }}" 
-                       href="#" wire:click.prevent="setFilter('all')">
+                    <a class="nav-link {{ $filterStatus === 'all' ? 'active' : '' }}" href="#"
+                        wire:click.prevent="setFilter('all')">
                         Semua ({{ $stats['all'] }})
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $filterStatus === 'pending' ? 'active' : '' }}" 
-                       href="#" wire:click.prevent="setFilter('pending')">
+                    <a class="nav-link {{ $filterStatus === 'pending' ? 'active' : '' }}" href="#"
+                        wire:click.prevent="setFilter('pending')">
                         Pending ({{ $stats['pending'] }})
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $filterStatus === 'approved' ? 'active' : '' }}" 
-                       href="#" wire:click.prevent="setFilter('approved')">
+                    <a class="nav-link {{ $filterStatus === 'approved' ? 'active' : '' }}" href="#"
+                        wire:click.prevent="setFilter('approved')">
                         Disetujui ({{ $stats['approved'] }})
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $filterStatus === 'rejected' ? 'active' : '' }}" 
-                       href="#" wire:click.prevent="setFilter('rejected')">
+                    <a class="nav-link {{ $filterStatus === 'rejected' ? 'active' : '' }}" href="#"
+                        wire:click.prevent="setFilter('rejected')">
                         Ditolak ({{ $stats['rejected'] }})
                     </a>
                 </li>
@@ -114,16 +114,32 @@
     <!-- Inspirations Grid -->
     <div class="row">
         @forelse($inspirations as $inspiration)
+            @php
+                // Decode JSON menjadi array
+                $images = json_decode($inspiration->image_url, true);
+                // Ambil gambar pertama
+                $thumbnail = $images[0] ?? null;
+            @endphp
+
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <img src="{{ asset('storage/' . $inspiration->image_url) }}" 
-                         class="card-img-top" 
-                         style="height: 200px; object-fit: cover;"
-                         alt="{{ $inspiration->title }}">
+
+                    <!-- FIXED: tampilkan thumbnail dari JSON -->
+                    @if ($thumbnail)
+                        <img src="{{ asset('storage/' . $thumbnail) }}" class="card-img-top"
+                            style="height: 200px; object-fit: cover;" alt="{{ $inspiration->title }}">
+                    @else
+                        <!-- Jika tidak ada gambar -->
+                        <div class="d-flex justify-content-center align-items-center bg-light" style="height: 200px;">
+                            <i class="bi bi-image text-secondary" style="font-size: 3rem;"></i>
+                        </div>
+                    @endif
+
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-start mb-2">
                             <h5 class="card-title mb-0">{{ Str::limit($inspiration->title, 30) }}</h5>
-                            @if($inspiration->status === 'pending')
+
+                            @if ($inspiration->status === 'pending')
                                 <span class="badge bg-warning text-dark">
                                     <i class="bi bi-clock"></i> Pending
                                 </span>
@@ -137,6 +153,7 @@
                                 </span>
                             @endif
                         </div>
+
                         <p class="card-text text-muted small">
                             {{ Str::limit($inspiration->description, 80) }}
                         </p>
@@ -144,25 +161,23 @@
                             <small class="text-muted">
                                 <i class="bi bi-person"></i> {{ $inspiration->user->name }}<br>
                                 <i class="bi bi-calendar"></i> {{ $inspiration->created_at->format('d M Y H:i') }}<br>
-                                <i class="bi bi-tag"></i> {{ $inspiration->ruangan->name ?? 'N/A' }} - {{ $inspiration->tag->name ?? 'N/A' }}
+                                <i class="bi bi-tag"></i> {{ $inspiration->ruangan->name ?? 'N/A' }} -
+                                {{ $inspiration->tag->name ?? 'N/A' }}
                             </small>
                         </div>
                         <div class="d-flex gap-2">
-                            @if($inspiration->status === 'pending')
-                                <button wire:click="approveInspiration({{ $inspiration->id }})" 
-                                        class="btn btn-sm btn-success flex-fill"
-                                        wire:confirm="Setujui inspirasi ini?">
+                            @if ($inspiration->status === 'pending')
+                                <button wire:click="approveInspiration({{ $inspiration->id }})"
+                                    class="btn btn-sm btn-success flex-fill" wire:confirm="Setujui inspirasi ini?">
                                     <i class="bi bi-check-lg"></i> Setuju
                                 </button>
-                                <button wire:click="rejectInspiration({{ $inspiration->id }})" 
-                                        class="btn btn-sm btn-warning flex-fill"
-                                        wire:confirm="Tolak inspirasi ini?">
+                                <button wire:click="rejectInspiration({{ $inspiration->id }})"
+                                    class="btn btn-sm btn-warning flex-fill" wire:confirm="Tolak inspirasi ini?">
                                     <i class="bi bi-x-lg"></i> Tolak
                                 </button>
                             @endif
-                            <button wire:click="deleteInspiration({{ $inspiration->id }})" 
-                                    class="btn btn-sm btn-danger"
-                                    wire:confirm="Hapus inspirasi ini secara permanen?">
+                            <button wire:click="deleteInspiration({{ $inspiration->id }})"
+                                class="btn btn-sm btn-danger" wire:confirm="Hapus inspirasi ini secara permanen?">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </div>
